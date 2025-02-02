@@ -1,12 +1,20 @@
 package com.example.postgres;
 
 import com.example.postgres.domain.Author;
-import com.example.postgres.domain.Book;
+import com.example.postgres.domain.BookEntity;
+import com.example.postgres.domain.dto.AuthorDto;
+import com.example.postgres.domain.dto.BookDto;
 
 public final class TestDataUtil {
     private TestDataUtil(){
     }
-
+    public static AuthorDto createTestAuthorDto() {
+        return AuthorDto.builder()
+                .id(1L)
+                .name("Abigail Rose")
+                .age(80)
+                .build();
+    }
     public static Author createTestAuthor() {
         return Author.builder()
                 .id(1L)
@@ -38,34 +46,40 @@ public final class TestDataUtil {
                 .build();
     }
 
-    public static Book createTestBook() {
-        return Book.builder()
+    public static BookEntity createTestBook(final Author author) {
+        return BookEntity.builder()
                 .isbn("978-1-2345-6789-0")
                 .title("The Shadow in the Attic")
-                .authorId(1L)
+                .author(author)
                 .build();
     }
-    public static Book createTestBookA() {
-        return Book.builder()
+    public static BookEntity createTestBookA(final Author author) {
+        return BookEntity.builder()
                 .isbn("978-1-2345-6789-0")
                 .title("The Shadow in the Attic")
-                .authorId(1L)
+                .author(author)
                 .build();
     }
-
-    public static Book createTestBookB() {
-        return Book.builder()
+    public static BookDto createTestBookDtoA(final AuthorDto author) {
+        return BookDto.builder()
+                .isbn("978-1-2345-6789-0")
+                .title("The Shadow in the Attic")
+                .author(author)
+                .build();
+    }
+    public static BookEntity createTestBookB(final Author author) {
+        return BookEntity.builder()
                 .isbn("978-1-2345-6789-1")
                 .title("Beyond the Horizon")
-                .authorId(1L)
+                .author(author)
                 .build();
     }
 
-    public static Book createTestBookC() {
-        return Book.builder()
+    public static BookEntity createTestBookC(final Author author) {
+        return BookEntity.builder()
                 .isbn("978-1-2345-6789-2")
                 .title("The Last Ember")
-                .authorId(1L)
+                .author(author)
                 .build();
     }
 }
